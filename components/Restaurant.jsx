@@ -41,10 +41,10 @@ const Restaurant = () => {
 
 
   useEffect(() => {
-    if (Object.keys(restaurant).length > 0) {
-        setLat(restaurant.location[0])
-        setLng(restaurant.location[1])
-    }
+    // if (Object.keys(restaurant).length > 0) {
+    //     setLat(restaurant.location[0])
+    //     setLng(restaurant.location[1])
+    // }
     getRestaurant()
   }, [])
   
@@ -61,11 +61,11 @@ const Restaurant = () => {
 
       <h1>{restaurant.name}</h1>
       <img src={restaurant.image} alt={restaurant.name} />
-      {/* <p>{restaurant.rating}</p> */} 
+      <p>{restaurant.description}</p>
+     {/* <p>{restaurant.rating}</p>  */}
+    
+      {Object.keys(restaurant).length ? <Map restaurant={restaurant} /> : null}
       
-      {/* {location !== null ? ( */}
-        <Map restaurant={restaurant} />
-      {/* ) : null} */}
     </div>
   );
 }

@@ -50,7 +50,9 @@ const Homepage = () => {
   return (
     <div className="container">
       <header>
-        <h1>YELP</h1>
+        <a href='/'>
+          <h1>YELP</h1>
+        </a>  
       </header>
       <form onSubmit={handleSearchSubmit}>
         <input
