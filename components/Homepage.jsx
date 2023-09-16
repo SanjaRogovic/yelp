@@ -1,18 +1,32 @@
 import React, {useState} from 'react'
 import SearchResults from './SearchResults'
-// import {Link} from "react-router-dom"
-// import { useParams } from 'react-router-dom';
+import axios from 'axios'
+
 
 const Homepage = () => {
     const [input, setInput] = useState("")
     const [city, setCity] = useState("")
     const [restaurants, setRestaurants] = useState([])
-    // const { index } = useParams();
+    
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault()
-        //fetch func
-        // console.log("fetching data")
+    const handleSearchSubmit = async(e) => {
+        try {
+          e.preventDefault();
+          let config = {
+            url: 'https://mngotest.fly.dev/restaurants',
+            method: "get",
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': '*',
+              'Access-Control-Allow-Credentials': 'true'
+            }
+        }
+          const response = await axios(config);
+          setRestaurants(response.data);
+          console.log(restaurants);
+        } catch (error) {
+          console.log('Error fetching data:', error);
+        }
     }
 
     const handleInput = (e) => {
@@ -22,7 +36,7 @@ const Homepage = () => {
 
     const handleCityInput = (e) => {
         setCity(e.target.value)
-        console.log(city)
+        // console.log(city)
     }
 
 
@@ -48,9 +62,9 @@ const Homepage = () => {
           Search
         </button>
       </form>
-      <SearchResults restaurants={restaurants}/>
-      {/* {restaurants.length > 0 ? <SearchResults restaurants={restaurants} /> : null} */}
-      {/* <Link key={index} to="/searchResults"></Link> */}
+      {/* <SearchResults restaurants={restaurants}/> */}
+      {restaurants.length > 0 ? <SearchResults restaurants={restaurants} /> : null}
+      
       
     </div>
   );
