@@ -1,16 +1,19 @@
 import React, {useState} from 'react'
 import SearchResults from './SearchResults'
 import axios from 'axios'
+import * as ReactBootstrap from "react-bootstrap";
 
 
-const Homepage = () => {
+const Homepage = ({setLat, setLng}) => {
     const [input, setInput] = useState("")
     const [city, setCity] = useState("")
     const [restaurants, setRestaurants] = useState([])
+    const [loading, setLoading] = useState(false)
     
 
     const handleSearchSubmit = async(e) => {
         try {
+            setLoading(true)
           e.preventDefault();
           let config = {
             url: 'https://mngotest.fly.dev/restaurants',
@@ -23,10 +26,15 @@ const Homepage = () => {
         }
           const response = await axios(config);
           setRestaurants(response.data);
+          setLat(location[location])
+          setLng(location[location])
           console.log(restaurants);
         } catch (error) {
           console.log('Error fetching data:', error);
         }
+        finally {
+            setLoading(false)
+          }
     }
 
     const handleInput = (e) => {
@@ -63,9 +71,13 @@ const Homepage = () => {
         </button>
       </form>
       {/* <SearchResults restaurants={restaurants}/> */}
+      {loading ? (
+        <div>
+          <ReactBootstrap.Spinner animation="border" variant="light" />
+          <p className='paragraphContent'>Content loading ...</p>
+        </div>
+      ) : null}
       {restaurants.length > 0 ? <SearchResults restaurants={restaurants} /> : null}
-      
-      
     </div>
   );
 }

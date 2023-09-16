@@ -11,6 +11,7 @@ const Restaurant = ({restaurant}) => {
 
   return (
     <div>
+      <p>Test</p>
       {location !== null ? (
         <Map lat={lat} lng={lng} />
       ) : null}
