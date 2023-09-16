@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as ReactBootstrap from "react-bootstrap";
 
 
-const Homepage = ({setLat, setLng}) => {
+const Homepage = () => {
     const [input, setInput] = useState("")
     const [city, setCity] = useState("")
     const [restaurants, setRestaurants] = useState([])
@@ -26,8 +26,7 @@ const Homepage = ({setLat, setLng}) => {
         }
           const response = await axios(config);
           setRestaurants(response.data);
-          setLat(location[location])
-          setLng(location[location])
+          
           console.log(restaurants);
         } catch (error) {
           console.log('Error fetching data:', error);

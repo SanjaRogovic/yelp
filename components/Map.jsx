@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const Map = ({lat, lng}) => {
+
+const Map = ({restaurant}) => {
+
+  useEffect(()=> {
+    console.log(restaurant.name)
+  }, [])
+
   return (
     <div className="mapContainer">
   <MapContainer
-        center={[lat, lng]}
+        center={restaurant}
         zoom={13}
         scrollWheelZoom={false}
         style={{height: "500px"}}
@@ -14,12 +20,13 @@ const Map = ({lat, lng}) => {
         <TileLayer 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
-        <Marker position={[lat, lng]}>
+        <Marker position={restaurant}>
           <Popup> You are here! </Popup>
         </Marker>
       </MapContainer>
    </div>
   )
 }
+
 
 export default Map

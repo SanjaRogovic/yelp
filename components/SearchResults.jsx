@@ -12,7 +12,7 @@ const SearchResults = ({restaurants}) => {
     <div>
       <ul>
         {restaurants.map((restaurant) => (
-            <Link key={restaurant._id} to={`/components/Restaurant/${restaurant._id}`}>
+            <Link key={restaurant._id} to={`/restaurant/${restaurant._id}`}>
             <li key={restaurant._id}>{restaurant.name}</li>
             {/* <img src={restaurant.image} alt={restaurant.name} /> 
             <p>{restaurant.rating}</p> */}
